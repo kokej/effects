@@ -1,0 +1,20 @@
+<div style="display: flex">
+  <form [formGroup]="todoForm" (ngSubmit)="post()">
+    <mat-form-field>
+      <input matInput placeholder="Add Todo" formControlName="name">
+    </mat-form-field>
+    <button mat-stroked-button type="submit" [disabled]="!todoForm.valid">Add todo</button>
+  </form>
+  <div style="margin-left: 3em" *ngIf="todo">
+    <h4>id: {{todo.id}}</h4>
+    <h3>name: {{todo.name}}</h3>
+  </div>
+</div>
+<div class="todos">
+  <mat-list>
+    <mat-list-item *ngFor="let todo of todos" (click)="getById(todo.id)">
+      <span style="padding-right: 1em">{{todo.name}}</span>
+      <button mat-stroked-button (click)="delete(todo.id)">delete</button>
+    </mat-list-item>
+  </mat-list>
+</div>
